@@ -6,7 +6,8 @@ const right= document.querySelector(".right")
 const left= document.querySelector(".left")
 let l=false;
 let r=false;
-
+let u=false;
+let lo=false;
 startScreen.addEventListener("click", start);
 
 let player = { speed: 3, ultimate: 5, scam: 10, score: 0 };
@@ -33,6 +34,19 @@ document.addEventListener("keyup", keyUp);
 function myleft(){
   l=true;
 }
+function myupper(){
+  u=true;
+}
+function myfinalupper(){
+  u=false;
+}
+function mylow(){
+  lo=true;
+}
+function myfinallow(){
+  lo=false;
+}
+
 function myfinalleft(){
 l=false;
 }
@@ -67,10 +81,10 @@ function gamePlay() {
     moveLines();
     moveEnemy(car);
 
-    if ((keys.ArrowUp ||keys.w ) && player.y > road.top + 200) {
+    if ((keys.ArrowUp ||keys.w || u) && player.y > road.top + 200) {
       player.y -= player.ultimate;
     }
-    if ((keys.ArrowDown || keys.s)&& player.y < road.bottom - 70) {
+    if ((keys.ArrowDown || keys.s || lo)&& player.y < road.bottom - 70) {
       player.y += player.ultimate;
     }
     if ((keys.ArrowLeft ||keys.a || l)&& player.x > 0) {
