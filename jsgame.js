@@ -2,6 +2,10 @@ console.log("start");
 const score = document.querySelector(".score");
 const startScreen = document.querySelector(".startScreen");
 const gameArea = document.querySelector(".gameArea");
+const right= document.querySelector(".right")
+const left= document.querySelector(".left")
+let l=false;
+let r=false;
 
 startScreen.addEventListener("click", start);
 
@@ -19,9 +23,29 @@ let keys = {
 document.addEventListener("keydown", keyDown);
 document.addEventListener("keyup", keyUp);
 
+// function over(){
+//   keys[left]=true;
+//   console.log("done");
+// }
+
+
+
+function myleft(){
+  l=true;
+}
+function myfinalleft(){
+l=false;
+}
+function myright(){
+  r=true;
+}
+function myfinalright(){
+  r=false;
+}
 function keyDown(e) {
   e.preventDefault();
   keys[e.key] = true;
+
 
   //   console.log(e.key);
   //   consol e.log(keys);
@@ -43,16 +67,16 @@ function gamePlay() {
     moveLines();
     moveEnemy(car);
 
-    if ((keys.ArrowUp ||keys.w) && player.y > road.top + 200) {
+    if ((keys.ArrowUp ||keys.w ) && player.y > road.top + 200) {
       player.y -= player.ultimate;
     }
     if ((keys.ArrowDown || keys.s)&& player.y < road.bottom - 70) {
       player.y += player.ultimate;
     }
-    if ((keys.ArrowLeft ||keys.a)&& player.x > 0) {
+    if ((keys.ArrowLeft ||keys.a || l)&& player.x > 0) {
       player.x -= player.ultimate;
     }
-    if ((keys.ArrowRight ||keys.d)&& player.x < road.width - 50 - 14) {
+    if ((keys.ArrowRight ||keys.d || r)&& player.x < road.width - 50 - 14) {
       player.x += player.ultimate;
     }
 
