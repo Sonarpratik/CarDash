@@ -10,7 +10,7 @@ let u=false;
 let lo=false;
 startScreen.addEventListener("click", start);
 
-let player = { speed: 3, ultimate: 5, scam: 10, score: 0 };
+let player = { speed: 3, ultimate: 5, scam: 5, score: 0 };
 let keys = {
   ArrowUp: false,
   ArrowDown: false,
@@ -102,6 +102,15 @@ function gamePlay() {
 
     player.score++;
     score.innerText = "Score : " + player.score;
+    if(player.score===500){
+        player.speed=4;
+        player.scam=6;
+    }
+    if(player.score===1000){
+        player.speed=5;
+        player.scam=10;
+        player.ultimate=7;
+    }
   }
 }
 
@@ -167,6 +176,7 @@ function moveEnemy(car) {
 
 const randomColor = () => {
   function c() {
+   
     let hex = Math.floor(Math.random() * 256).toString(16);
     return ("0" + String(hex)).substr(-2);
   }
